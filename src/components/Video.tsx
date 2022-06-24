@@ -1,4 +1,5 @@
 import { DefaultUi, Player, Youtube } from "@vime/react";
+import { gql, useQuery } from "@apollo/client";
 import {
   CaretRight,
   DiscordLogo,
@@ -8,7 +9,7 @@ import {
 } from "phosphor-react";
 
 import "@vime/core/themes/default.css";
-import { gql, useQuery } from "@apollo/client";
+
 
 const GET_LESSON_BY_SLUG_QUERY = gql`
   query GetLessonBySlug($slug: String) {
@@ -47,6 +48,7 @@ export function Video(props: VideoProps) {
     variables: {
       slug: props.lessonSlug,
     },
+    fetchPolicy: "no-cache",
   });
 
   if (!data) {
